@@ -3,47 +3,68 @@
 <script type='text/javascript'>
 var xpos = 3;
 var ypos = 3;
-function keyDown(e)
+var initarr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+var currarr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+function shuffle()
 {
-  var code = e.keyCode ? e.keyCode : e.which;
-  var z = (xpos)+4*(ypos)+1;
-  var s = 'box'+z;
-  var z2,s2,x2,y2;
-  var s1,s2,s3;
-  if (code == 38)
-  {	  
-	   if(ypos<3)
-	   {
-			z2=z+4;
-			s2='box'+z2;
-			x2=document.getElementById(s2).innerHTML;
-			document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
-			document.getElementById(s2).style.background='white';
-			document.getElementById(s).style.borderStyle='none';
-			document.getElementById(s).innerHTML=x2;
-			document.getElementById(s).style.background='lightgrey';
-			ypos=ypos+1;
-	  }
-  }
-  if (code == 40)
-  {
-		if(ypos>=1)
-		{
-			z2=z-4;
-			s2='box'+z2;
-			x2=document.getElementById(s2).innerHTML;
-			document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
-			document.getElementById(s2).style.background='white';
-			document.getElementById(s).style.borderStyle='none';
-			document.getElementById(s).innerHTML=x2;
-			document.getElementById(s).style.background='lightgrey';
-			ypos=ypos-1;
-	   }
-  }
-  if (code == 37)
-  { 
-	  if(xpos<3)
-	  {
+	var z,s,k;
+	for(var i=0;i<100;i++)
+	{
+		k=Math.floor((Math.random()*4)+1);
+		z = (xpos)+4*(ypos)+1;
+		s = 'box'+z;
+		if(k==1)
+			up(z,s);
+		if(k==2)
+			down(z,s);
+		if(k==3)
+			left(z,s);
+		if(k==4)
+			right(z,s);
+	}
+}
+function up(z,s)
+{
+	if(ypos<3)
+	{
+		z2=z+4;
+		s2='box'+z2;
+		x2=document.getElementById(s2).innerHTML;
+		document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+		document.getElementById(s2).style.background='white';
+		document.getElementById(s).style.borderStyle='none';
+		document.getElementById(s).innerHTML=x2;
+		document.getElementById(s).style.background='lightgrey';
+		ypos=ypos+1;
+		var temp;
+		temp=currarr[z2-1];
+		currarr[z2-1]=currarr[z-1];
+		currarr[z-1]=temp;
+	}
+}
+function down(z,s)
+{
+	if(ypos>=1)
+	{
+		z2=z-4;
+		s2='box'+z2;
+		x2=document.getElementById(s2).innerHTML;
+		document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+		document.getElementById(s2).style.background='white';
+		document.getElementById(s).style.borderStyle='none';
+		document.getElementById(s).innerHTML=x2;
+		document.getElementById(s).style.background='lightgrey';
+		ypos=ypos-1;
+		var temp;
+		temp=currarr[z2-1];
+		currarr[z2-1]=currarr[z-1];
+		currarr[z-1]=temp;
+	}
+}
+function left(z,s)
+{
+	if(xpos<3)
+	{
 		z2=z+1;
 		s2='box'+z2;
 		x2=document.getElementById(s2).innerHTML;
@@ -53,11 +74,15 @@ function keyDown(e)
 		document.getElementById(s).innerHTML=x2;
 		document.getElementById(s).style.background='lightgrey';
 		xpos=xpos+1;
-	  }
-  }
-  if (code == 39)
-  { 
-	  if(xpos>=1)
+		var temp;
+		temp=currarr[z2-1];
+		currarr[z2-1]=currarr[z-1];
+		currarr[z-1]=temp;
+	}
+}
+function right(z,s)
+{
+	if(xpos>=1)
 	  {
 		z2=z-1;
 		s2='box'+z2;
@@ -68,12 +93,52 @@ function keyDown(e)
 		document.getElementById(s).innerHTML=x2;
 		document.getElementById(s).style.background='lightgrey';
 		xpos=xpos-1;
+		var temp;
+		temp=currarr[z2-1];
+		currarr[z2-1]=currarr[z-1];
+		currarr[z-1]=temp;
 	  }
+}
+function compare()
+{
+	var i;
+	for(i=0;i<initarr.length;i++)
+	{
+		if(initarr[i]!=currarr[i])
+			break;
+		else
+			continue;
+	}
+	if(i==initarr.length)
+		alert("Yay! You have done it.");
+}
+function keyDown(e)
+{
+  var code = e.keyCode ? e.keyCode : e.which;
+  var z = (xpos)+4*(ypos)+1;
+  var s = 'box'+z;
+  var z2,s2,x2;
+  if (code == 38)
+  {	  
+	   up(z,s);
   }
+  if (code == 40)
+  {
+		down(z,s);
+  }
+  if (code == 37)
+  { 
+	  left(z,s);
+  }
+  if (code == 39)
+  { 
+	  right(z,s);
+  }
+  compare();
 }
 </script>
 </head>
-<body onkeydown="keyDown(event)" bgcolor='white'>
+<body onload="shuffle()" onkeydown="keyDown(event)" bgcolor='white'>
 <div id='container' style='width:400px;height:400px;position:absolute;top:50%;left:50%;margin-left:-200px;margin-top:-200px;'>
 <div id='box1' style='width:96px;height:96px;position:absolute;top:0px;left:0px;background:lightgrey;border:2px ;border-radius:3px;'>
 <h1 id='heading' style='text-align:center;font-size:40px;'>1</h1>
