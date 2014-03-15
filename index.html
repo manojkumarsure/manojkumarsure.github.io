@@ -1,9 +1,132 @@
-<!DOCTYPE html>
 <html>
 <head>
-<link rel = "stylesheet" type = "text/css" href = "file.css">
+<script type='text/javascript'>
+var xpos = 3;
+var ypos = 3;
+function keyDown(e)
+{
+  var code = e.keyCode ? e.keyCode : e.which;
+  var z = (xpos)+4*(ypos)+1;
+  var s = 'box'+z;
+  var z2,s2,x2,y2;
+  var s1,s2,s3;
+  if (code == 38)
+  {	  
+	   if(ypos<3)
+	   {
+			z2=z+4;
+			s2='box'+z2;
+			x2=document.getElementById(s2).innerHTML;
+			document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+			document.getElementById(s2).style.background='grey';
+			document.getElementById(s2).style.borderStyle='solid';
+			document.getElementById(s).style.borderStyle='none';
+			document.getElementById(s).innerHTML=x2;
+			document.getElementById(s).style.background='lightgrey';
+			ypos=ypos+1;
+	  }
+  }
+  if (code == 40)
+  {
+		if(ypos>=1)
+		{
+			z2=z-4;
+			s2='box'+z2;
+			x2=document.getElementById(s2).innerHTML;
+			document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+			document.getElementById(s2).style.background='grey';
+			document.getElementById(s2).style.borderStyle='solid';
+			document.getElementById(s).style.borderStyle='none';
+			document.getElementById(s).innerHTML=x2;
+			document.getElementById(s).style.background='lightgrey';
+			ypos=ypos-1;
+	   }
+  }
+  if (code == 37)
+  { 
+	  if(xpos<3)
+	  {
+		z2=z+1;
+		s2='box'+z2;
+		x2=document.getElementById(s2).innerHTML;
+		document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+		document.getElementById(s2).style.background='grey';
+		document.getElementById(s2).style.borderStyle='solid';
+		document.getElementById(s).style.borderStyle='none';
+		document.getElementById(s).innerHTML=x2;
+		document.getElementById(s).style.background='lightgrey';
+		xpos=xpos+1;
+	  }
+  }
+  if (code == 39)
+  { 
+	  if(xpos>=1)
+	  {
+		z2=z-1;
+		s2='box'+z2;
+		x2=document.getElementById(s2).innerHTML;
+		document.getElementById(s2).innerHTML=document.getElementById(s).innerHTML;
+		document.getElementById(s2).style.background='grey';
+		document.getElementById(s2).style.borderStyle='solid';
+		document.getElementById(s).style.borderStyle='none';
+		document.getElementById(s).innerHTML=x2;
+		document.getElementById(s).style.background='lightgrey';
+		xpos=xpos-1;
+	  }
+  }
+}
+</script>
 </head>
-<h2>This is my first web page</h2>
-<h2>This ain't a web page</h2>
+<body onkeydown="keyDown(event)" bgcolor='white'>
+<div id='container' style='width:400px;height:400px;position:absolute;top:50%;left:50%;margin-left:-200px;margin-top:-200px;'>
+<div id='box1' style='width:96px;height:96px;position:absolute;top:0px;left:0px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>1</h1>
+</div>
+<div id='box2' style='width:96px;height:96px;position:absolute;top:0px;left:100px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>2</h1>
+</div>
+<div id='box3' style='width:96px;height:96px;position:absolute;top:0px;left:200px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>3</h1>
+</div>
+<div id='box4' style='width:96px;height:96px;position:absolute;top:0px;left:300px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>4</h1>
+</div>
+<div id='box5' style='width:96px;height:96px;position:absolute;top:100px;left:0px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>5</h1>
+</div>
+<div id='box6' style='width:96px;height:96px;position:absolute;top:100px;left:100px;background:lightgrey;border:2px;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>6</h1>
+</div>
+<div id='box7' style='width:96px;height:96px;position:absolute;top:100px;left:200px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>7</h1>
+</div>
+<div id='box8' style='width:96px;height:96px;position:absolute;top:100px;left:300px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>8</h1>
+</div>
+<div id='box9' style='width:96px;height:96px;position:absolute;top:200px;left:0px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>9</h1>
+</div>
+<div id='box10' style='width:96px;height:96px;position:absolute;top:200px;left:100px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>10</h1>
+</div>
+<div id='box11' style='width:96px;height:96px;position:absolute;top:200px;left:200px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>11</h1>
+</div>
+<div id='box12' style='width:96px;height:96px;position:absolute;top:200px;left:300px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>12</h1>
+</div>
+<div id='box13' style='width:96px;height:96px;position:absolute;top:300px;left:0px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>13</h1>
+</div>
+<div id='box14' style='width:96px;height:96px;position:absolute;top:300px;left:100px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>14</h1>
+</div>
+<div id='box15' style='width:96px;height:96px;position:absolute;top:300px;left:200px;background:lightgrey;border:2px ;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'>15</h1>
+</div>
+<div id='box16' style='width:96px;height:96px;position:absolute;top:300px;left:300px;background:grey;border:2px solid;border-radius:3px;'>
+<h1 id='heading' style='text-align:center;font-size:40px;'></h1>
+</div>
+</div>
 </body>
 </html>
