@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+function dragStart(ev) {
+   ev.dataTransfer.effectAllowed='move';
+   ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+   ev.dataTransfer.setDragImage(ev.target,0,0);
+   return true;
+}
+function dragEnter(ev) {
+   event.preventDefault();
+   return true;
+}
+function dragOver(ev) {
+    return false;
+}
+function dragDrop(ev) {
+   var src = ev.dataTransfer.getData("Text");
+   ev.target.appendChild(document.getElementById(src));
+   ev.stopPropagation();
+   return false;
+}
+    </script>
+</head>
+<body >
+<center>
+<div id = "board" style='width:800px;height:500px;position:absolute;top:50%;left:50%;margin-left:-400px;margin-top:-250px;background:lightgrey;'>
+    <!--<canvas id="myCanvas" width="800px" height="500px"></canvas>-->
+    <div id='box1' style='width:60px;height:20px;position:absolute;top:233px;left:70px;border:2px ;background:red;border-radius:3px;' draggable="true" 
+     ondragstart="return dragStart(event)" ></div>
+	<div id='box2' style='width:70px;height:20px;position:absolute;top:253px;left:65px;border:2px ;background:yellow;border-radius:3px;'></div>
+	<div id='box3' style='width:80px;height:20px;position:absolute;top:273px;left:60px;border:2px ;background:green;border-radius:3px;'></div>
+	<div id='box4' style='width:90px;height:20px;position:absolute;top:293px;left:55px;border:2px ;background:darkblue;border-radius:3px;'></div>
+	<div id='box5' style='width:100px;height:20px;position:absolute;top:313px;left:50px;border:2px ;background:burlywood;border-radius:3px;'></div>
+	<div id='box6' style='width:110px;height:20px;position:absolute;top:333px;left:45px;border:2px ;background:black;border-radius:3px;'></div>
+	<div id='box7' style='width:120px;height:20px;position:absolute;top:353px;left:40px;border:2px ;background:orange;border-radius:3px;'></div>
+	<div id='box8' style='width:130px;height:20px;position:absolute;top:373px;left:35px;border:2px ;background:deeppink;border-radius:3px;'></div>
+	<div id='box9' style='width:140px;height:20px;position:absolute;top:393px;left:30px;border:2px ;background:skyblue;border-radius:3px;'></div>
+	<div id='box10' style='width:150px;height:20px;position:absolute;top:413px;left:25px;border:2px ;background:darkviolet;border-radius:3px;' ondragenter="return dragEnter(event)" 
+     ondrop="return dragDrop(event)" 
+     ondragover="return dragOver(event)"></div>
+</div>
+  </body>
+  </center>
+</html>

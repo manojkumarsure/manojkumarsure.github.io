@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game of Nim</title>
+<link href="bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet"> 
+<script>
+var prev=-1;
+function empty(l)
+{
+	var n = l.length;
+	var i;
+	for(i=0;i<n;i++)
+	{
+		if(l[i]==0)
+			continue;
+		else
+			break;
+	}
+	if(i==n)
+		return 1;
+	else
+		return 0;
+}
+function printcoins(n,l)
+{
+	var h=document.getElementById('gamepaneinner');
+	h.innerHTML="";
+	for(var i=0;i<n;i++)
+	{
+		var t=document.createElement('div');
+		t.setAttribute('style','position:relative;height:70px');
+		t.setAttribute('val','0');
+		t.setAttribute('idx',i);
+		t.setAttribute('onclick','coinsel(this)');
+		for(var j=0;j<l[i];j++)
+		{
+			t.innerHTML+="<img src='coin.png'>";
+		}
+		h.appendChild(t);
+	}
+}
+function gon(n,l)
+{
+	var k=[];
+	var s =0;
+	for(var i=0;i<n;i++)
+	{
+		s=s^l[i];
+	}
+	if(s==0)
+	{
+		for(var i=0;i<n;i++)
+		{
+			if(l[i]>=1)
+			{
+				l[i]=l[i]-1;
+				break;
+			}
+		}
+	}
+	else
+	{
+		for(var i=0;i<n;i++)
+		{
+			k[i]=0;
+		}
+		for(var i=0;i<n;i++)
+		{
+			for(var j=0;j<n;j++)
+			{
+				if(i!=j)
+				{
+					k[i]=k[i]^l[j];
+				}
+			}
+		}
+		for(var i=0;i<n;i++)
+		{
+			if(k[i]<l[i])
+			{
+				l[i]=k[i];
+				break;
+			}
+		}
+	}
+	msleep(400);
+	printcoins(n,l);
+}
+function msleep(sec)
+{
+	var date= new Date();
+	var curdate=null;
+	do
+	{
+		curdate=new Date();
+	}while(curdate-date < sec);
+}
+function game()
+{
+	if(prev!=-1)
+	{
+		var obj=document.getElementById('gamepaneinner').getElementsByTagName('div')[prev];
+		var len=obj.childNodes.length;
+		obj.innerHTML="";
+		for(var j=0;j<len-obj.getAttribute('val');j++)
+		{
+			obj.innerHTML+="<img src='coin.png'>";
+		}
+		var ob=document.getElementById('gamepaneinner').getElementsByTagName('div');
+		var n=ob.length;
+		var l=[];
+		for(var i=0;i<n;i++)
+		{
+			l[i]=(ob[i].getElementsByTagName('img').length);
+		}
+		if(empty(l))
+		{
+			alert('you won');
+			location.reload();
+		}
+		gon(n,l);
+		if(empty(l))
+		{
+			alert('you lose');
+			location.reload();
+		}
+	}
+}
+function coinsel(obj)
+{
+	var curr=obj.getAttribute('idx');
+	if(curr==prev || prev==-1)
+	{
+		var x = obj.getAttribute('val')-1+2;
+		obj.setAttribute('val',x);
+		var l=obj.childNodes.length;
+		for(var i=l-x;i<l;i++)
+		{
+			obj.childNodes[i].setAttribute('src','coinsel.png');
+		}
+		prev=curr;
+	}
+	else
+	{
+		var arr = document.getElementById('gamepaneinner').getElementsByTagName('div')[prev];
+		var l = arr.childNodes.length;
+		for(var i=0;i<l;i++)
+		{
+			arr.childNodes[i].setAttribute('src','coin.png');
+		}
+		arr.setAttribute('val','0');
+		prev=curr;
+		var x = obj.getAttribute('val')-1+2;
+		obj.setAttribute('val',x);
+		var l=obj.childNodes.length;
+		for(var i=l-x;i<l;i++)
+		{
+			obj.childNodes[i].setAttribute('src','coinsel.png');
+		}
+	}
+}
+function coins()
+{
+	document.getElementById('leftpane').setAttribute('class','hidden');
+	var g=document.getElementById('gamepane');
+	var x=document.getElementById('num').value;
+	var h=document.getElementById('gamepaneinner');
+	for(var i=0;i<x;i++)
+	{
+		var t=document.createElement('div');
+		t.setAttribute('style','position:relative;height:70px');
+		t.setAttribute('val','0');
+		t.setAttribute('idx',i);
+		t.setAttribute('onclick','coinsel(this)');
+		for(var j=0;j<document.getElementById('num'+(i+1)).value;j++)
+		{
+			t.innerHTML+="<img src='coin.png'>";
+		}
+		h.appendChild(t);
+	}
+ 	g.innerHTML+="<button style='position:absolute;left:10%;top:50px;' class='btn btn-success' onclick='game()'>Done</button>";
+}
+function fn()
+{
+	var x=document.getElementById('num').value;
+	var div=document.getElementById('params');
+	div.innerHTML="";
+	for(var i=0;i<x;i++)
+	{
+		div.innerHTML+="<label>coins in row"+(i+1)+"</label><br><input class='form-control' type='number' value='0' id='num"+(i+1)+"'>";
+	}
+	if(x!=0)
+		div.innerHTML+="<button class='btn btn-success' onclick='coins()'>submit</button>";
+}
+</script>
+</head>
+<body>
+<div style="width:100%;left:0%;top:0%;height:100%" id='gamepane'>
+<h1 style='position:absolute;left:40%'>Game of Nim</h1>
+<div style='position:absolute;width:80%;height:80%;left:10%;top:15%' id='gamepaneinner'>
+</div>
+</div>
+<div style="width:25%;left:0px;top:0px;position:absolute;height:100%;" id='leftpane'>
+<div style="width:22%;left:3%;top:5%;position:fixed;height:100px;overflow:auto" >
+<label>set no. of rows</label><br>
+<input class="form-control" type='number' value='0' id='num'>
+<button class='btn btn-success' onclick='fn()'>submit</button>
+</div>
+<div style="width:22%;left:3%;top:140px;height:75%;position:fixed;overflow:auto" id='params' >
+</div>
+</body>
+</html>

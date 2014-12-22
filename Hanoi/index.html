@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" >
+function updateTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        if (minutes < 10){
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10){
+            seconds = "0" + seconds;
+        }
+        var v = hours + ":" + minutes + ":" + seconds + " ";
+        if(hours > 11){
+            v+="PM";
+        } else {
+            v+="AM"
+        }
+        setTimeout("updateTime()",1000);
+        document.getElementById('time').innerHTML=v;
+    }
+    updateTime();
+function fill()
+{
+	var canvas=document.getElementById('acanvas');
+	var context=canvas.getContext('2d');
+	context.beginPath();
+	context.moveTo(100,430);
+	context.lineTo(100,80);
+	context.lineWidth=3;
+	context.strokeStyle='blue';
+	context.lineCap='round';
+	context.stroke();
+	context.moveTo(300,430);
+	context.lineTo(300,80);
+	context.lineWidth=3;
+	context.strokeStyle='blue';
+	context.lineCap='round';
+	context.stroke();
+	context.moveTo(500,430);
+	context.lineTo(500,80);
+	context.lineWidth=3;
+	context.strokeStyle='blue';
+	context.lineCap='round';
+	context.stroke();
+	context.moveTo(700,430);
+	context.lineTo(700,80);
+	context.lineWidth=3;
+	context.strokeStyle='blue';
+	context.lineCap='round';
+	context.stroke();
+}
+</script>
+</head>
+<body onload="fill()">
+<h4>Current Time: <span id="time" /></h4>
+<div id = "board" style='width:800px;height:500px;position:absolute;top:50%;left:50%;margin-left:-400px;margin-top:-250px;background:lightgrey;'>
+<canvas id="acanvas" width = 800px height = 500px  >
+</canvas>
+<div id='box1' style='width:60px;height:20px;position:absolute;top:233px;left:70px;border:2px ;background:red;border-radius:3px;'></div>
+<div id='box2' style='width:70px;height:20px;position:absolute;top:253px;left:65px;border:2px ;background:yellow;border-radius:3px;'></div>
+<div id='box3' style='width:80px;height:20px;position:absolute;top:273px;left:60px;border:2px ;background:green;border-radius:3px;'></div>
+<div id='box4' style='width:90px;height:20px;position:absolute;top:293px;left:55px;border:2px ;background:darkblue;border-radius:3px;'></div>
+<div id='box5' style='width:100px;height:20px;position:absolute;top:313px;left:50px;border:2px ;background:burlywood;border-radius:3px;'></div>
+<div id='box6' style='width:110px;height:20px;position:absolute;top:333px;left:45px;border:2px ;background:black;border-radius:3px;'></div>
+<div id='box7' style='width:120px;height:20px;position:absolute;top:353px;left:40px;border:2px ;background:orange;border-radius:3px;'></div>
+<div id='box8' style='width:130px;height:20px;position:absolute;top:373px;left:35px;border:2px ;background:deeppink;border-radius:3px;'></div>
+<div id='box9' style='width:140px;height:20px;position:absolute;top:393px;left:30px;border:2px ;background:skyblue;border-radius:3px;'></div>
+<div id='box10' style='width:150px;height:20px;position:absolute;top:413px;left:25px;border:2px ;background:darkviolet;border-radius:3px;'></div>
+</div>
+</body>
+</html>
