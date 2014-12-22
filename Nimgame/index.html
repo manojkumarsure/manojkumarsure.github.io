@@ -83,7 +83,7 @@ function gon(n,l)
 			}
 		}
 	}
-	msleep(400);
+	msleep(300);
 	printcoins(n,l);
 }
 function msleep(sec)
@@ -178,7 +178,7 @@ function coins()
 		}
 		h.appendChild(t);
 	}
- 	g.innerHTML+="<button style='position:absolute;left:10%;top:50px;' class='btn btn-success' onclick='game()'>Done</button>";
+ 	g.innerHTML+="<button style='position:absolute;left:10%;top:30px;' class='btn btn-success' onclick='game()'>Done</button>";
 }
 function fn()
 {
@@ -195,18 +195,18 @@ function fn()
 </script>
 </head>
 <body>
-<div style="width:100%;left:0%;top:0%;height:100%" id='gamepane'>
+<div style="position:absolute;width:100%;left:0%;top:0%;height:100%" id='gamepane'>
 <h1 style='position:absolute;left:40%'>Game of Nim</h1>
-<div style='position:absolute;width:80%;height:80%;left:10%;top:15%' id='gamepaneinner'>
+<div style='position:absolute;width:80%;height:80%;left:10%;top:100px' id='gamepaneinner'>
 </div>
 </div>
 <div style="width:25%;left:0px;top:0px;position:absolute;height:100%;" id='leftpane'>
-<div style="width:22%;left:3%;top:5%;position:fixed;height:100px;overflow:auto" >
+<div style="width:250px;left:3%;top:5%;position:absolute;height:100px" >
 <label>set no. of rows</label><br>
 <input class="form-control" type='number' value='0' id='num'>
 <button class='btn btn-success' onclick='fn()'>submit</button>
 </div>
-<div style="width:22%;left:3%;top:140px;height:75%;position:fixed;overflow:auto" id='params' >
+<div style="width:250px;left:3%;top:140px;height:75%;position:absolute" id='params' >
 </div>
 </body>
 </html>
