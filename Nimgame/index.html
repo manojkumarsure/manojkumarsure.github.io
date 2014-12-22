@@ -113,13 +113,15 @@ function game()
 		{
 			l[i]=(ob[i].getElementsByTagName('img').length);
 		}
+		var x=0;
 		if(empty(l))
 		{
 			alert('you won');
+			x=1;
 			location.reload();
 		}
 		gon(n,l);
-		if(empty(l))
+		if(empty(l) && x==0)
 		{
 			alert('you lose');
 			location.reload();
